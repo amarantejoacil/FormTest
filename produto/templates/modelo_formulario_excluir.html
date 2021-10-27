@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Excluir Registro</h3>
+
+    <form action="" method="POST">
+      <p>Deseja excluir o registro: <strong>{{ object }} </strong> ?</p>
+      {% csrf_token %}
+      {{ form }}
+
+      <button type="submit" class="btn btn-primary">Excluir</button>
+    </form>
+
+</body>
+</html>

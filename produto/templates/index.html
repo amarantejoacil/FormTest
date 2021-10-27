@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Lista de Produtos</h1>
+<a href="{%  url 'cadastrar' %}">Adicionar novo Produto</a>
+<br><br>
+<table>
+    <tr>
+        <th>#</th>
+        <th>Descricao</th>
+        <th>Valor</th>
+        <th>Categoria</th>
+        <th>Ações</th>
+    </tr>
+
+    {% for p in object_list %}
+        <tr>
+            <td>{{ p.pk }}</td>
+            <td>{{ p.descricao }}</td>
+            <td>{{ p.valor }}</td>
+            <td>{{ p.categoria }}</td>
+            <td>
+                <a href="{% url 'alterar' p.pk %}">Editar</a>
+                <a href="{% url 'deletar' p.pk %}">Excluir</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td>Nenhum campo registrado!</td>
+        </tr>
+    {% endfor %}
+</table>
+<br><br><br>
+<a href="{% url 'lista-aluno' %}">Ir para Teste de Cadastro de Aluno</a>
+
+</body>
+</html>
