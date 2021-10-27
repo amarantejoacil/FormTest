@@ -7,12 +7,9 @@
 </head>
 <body>
 <section class="container mt-2">
-    <h1>Aluno</h1>
-        <form action="{% url 'minha-consulta' %}" method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <input class="btn btn-success" type="submit" value="Ok">
-        </form>
+    <h1>Exibindo dados:</h1>
+    <p> Nome: {{ form.nome.value }}</p>
+    <p> Data Nascimento: {{ form.data_nascimento.value }}</p>
 </section>
 </body>
 </html>
