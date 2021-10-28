@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'produto',
     'aluno',
     'tempus_dominus',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
