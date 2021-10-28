@@ -5,8 +5,9 @@ from datetime import datetime
 
 class AlunoForms(forms.Form):
     nome = forms.CharField(label='Nome', max_length=100)
-    data_nascimento = forms.DateField(label='Data de nascimento', widget=DatePicker())
-    data_pesquisa = forms.DateField(label='Data da pesquisa', disabled=True, initial=datetime.today())
+    data_nascimento = forms.DateField(label='Data de nascimento', widget=DatePicker(), required=False)
+    data_pesquisa = forms.DateField(label='Data da pesquisa', disabled=True,
+                                    initial=datetime.today(), required=False)
 
     TIPO = {
         (1, 'Masculino'),
@@ -24,6 +25,7 @@ class AlunoForms(forms.Form):
     email = forms.EmailField(label='E-mail', max_length=150, required=False)
 
     data_hora = forms.DateTimeField(
+        required=False,
         widget=DateTimePicker(
             options={
                 'useCurrent': True,
@@ -37,6 +39,7 @@ class AlunoForms(forms.Form):
     )
 
     horas = forms.TimeField(
+        required=False,
         widget=TimePicker(
             options={
                 'enabledHours': [9, 10, 11, 12, 13, 14, 15, 16],
@@ -50,7 +53,7 @@ class AlunoForms(forms.Form):
     )
 
     data_intervalo = forms.DateField(
-        required=True,
+        required=False,
         widget=DatePicker(
             options={
                 'minDate': '2009-01-20',
@@ -59,6 +62,13 @@ class AlunoForms(forms.Form):
         ),
         initial='2013-01-01',
     )
+
+    def clean_nome(self):
+        nome = self.cleaned_data.get('nome')
+        if any(char.isdigit() for char in nome):
+            raise forms.ValidationError('Não é permitido números neste campo!')
+        else:
+            return nome
 
 
 

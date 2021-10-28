@@ -27,6 +27,11 @@
                     <label for="{{field.id_for_label}}">{{field.label}}</label>
                     {{field|add_class:'form-control'}}
                 </div>
+                {% for erro in field.errors %}
+                    <section class="alert alert-danger" role="alert">
+                        {{ field.errors }}
+                    </section>
+                {% endfor %}
             {% endfor %}
             <input class="btn btn-success" type="submit" value="Ok">
         </form>

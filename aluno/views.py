@@ -11,5 +11,10 @@ def AlunoView(request):
 def Revisao_consulta(request):
     if request.method == 'POST':
         form = AlunoForms(request.POST)
-        context = {'form': form}
-        return render(request, 'minha_consulta.html', context)
+        if form.is_valid():
+            context = {'form': form}
+            return render(request, 'minha_consulta.html', context)
+        else:
+            print('Form inválido')
+            context = {'form': form}
+            return render(request, 'aluno.html', context)
