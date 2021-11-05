@@ -23,6 +23,7 @@
             <td>{{ p.descricao }}</td>
             <td>{{ p.valor }}</td>
             <td>{{ p.categoria }}</td>
+            <td>{{ p.observacoes | safe }}</td>
             <td>
                 <a href="{% url 'alterar' p.pk %}">Editar</a>
                 <a href="{% url 'deletar' p.pk %}">Excluir</a>

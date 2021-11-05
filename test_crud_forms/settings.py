@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'aluno',
     'tempus_dominus',
     'widget_tweaks',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [

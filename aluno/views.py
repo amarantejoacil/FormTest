@@ -15,6 +15,5 @@ def Revisao_consulta(request):
             context = {'form': form}
             return render(request, 'minha_consulta.html', context)
         else:
-            print('Form inválido')
             context = {'form': form}
             return render(request, 'aluno.html', context)
