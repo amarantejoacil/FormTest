@@ -1,13 +1,24 @@
 from django import forms
 from tempus_dominus.widgets import DatePicker, DateTimePicker, TimePicker
 from datetime import datetime
+from aluno.validation import *
 
 
 class AlunoForms(forms.Form):
     nome = forms.CharField(label='Nome', max_length=100)
+    senha = forms.CharField(label='Senha', max_length=100)
+    repete_senha = forms.CharField(label='Repete Senha', max_length=100)
     data_nascimento = forms.DateField(label='Data de nascimento', widget=DatePicker(), required=False)
     data_pesquisa = forms.DateField(label='Data da pesquisa', disabled=True,
                                     initial=datetime.today(), required=False)
+
+    origem = forms.CharField(label='origem', max_length=100, required=False)
+    destino = forms.CharField(label='destino', max_length=100, required=False)
+
+
+
+
+
 
     TIPO = {
         (1, 'Masculino'),
@@ -63,12 +74,45 @@ class AlunoForms(forms.Form):
         initial='2013-01-01',
     )
 
+    #VALIDAÇÃO MODELO 01
     def clean_nome(self):
         nome = self.cleaned_data.get('nome')
         if any(char.isdigit() for char in nome):
             raise forms.ValidationError('Não é permitido números neste campo!')
         else:
             return nome
+
+    def clean(self):
+        # origem = self.cleaned_data.get('origem')
+        # destino = self.cleaned_data.get('destino')
+
+        # VALIDAÇÃO MODELO 02
+        # if origem == destino:
+        #     self.add_error('destino', 'Origem e Destino não podem ser iguais')
+        # return self.cleaned_data
+
+
+        # VALIDAÇÃO MODELO 03
+        lista_de_erros = {}
+        senha = self.cleaned_data.get('senha')
+        repete_senha = self.cleaned_data.get('repete_senha')
+
+        verifica_numero_existe_em_texto(senha, 'senha', lista_de_erros)
+        verifica_numero_existe_em_texto(repete_senha, 'repete_senha', lista_de_erros)
+        verificar_senha_iguais(senha, repete_senha, lista_de_erros)
+
+        #verifica se existe erro
+        if lista_de_erros is not None:
+            for erro in lista_de_erros:
+                mensagem_erro = lista_de_erros[erro]
+                self.add_error(erro, mensagem_erro)
+
+
+        return self.cleaned_data
+
+
+
+
 
 
 
