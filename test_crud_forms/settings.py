@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'produto',
     'aluno',
+    'hospital',
     'tempus_dominus',
     'widget_tweaks',
     'ckeditor',

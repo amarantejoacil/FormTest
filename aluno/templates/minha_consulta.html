@@ -9,17 +9,20 @@
 <body>
 <section class="container mt-2">
     <h1>Exibindo dados:</h1>
-    <p> Nome: {{ form.nome.value }}</p>
-    <p> Data Nascimento: {{ form.data_nascimento.value }}</p>
-    <p> Data da Pesquisa: {{ form.data_pesquisa.value }}</p>
-    <p> Sexo: {{ form.sexo.value }}</p>
-    <p> Bio: {{ form.bio.value }}</p>
-    <p> E-mail: {{ form.email.value }}</p>
-    <p> Data Hora: {{ form.data_hora.value }}</p>
-    <p> Hora: {{ form.horas.value }}</p>
-    <p> Data com intervalo: {{ form.data_intervalo.value }}</p>
-    <p> Origem {{ form.origem.value }}</p>
-    <p> Destino: {{ form.destino.value }}</p>
+    <p> Nome: {{ aluno_form.nome.value }}</p>
+    <p> Senha: {{ aluno_form.senha.value }}</p>
+    <p> Repete senha: {{ aluno_form.repete_senha.value }}</p>
+    <p> Data Nascimento: {{ aluno_form.data_nascimento.value }}</p>
+    <p> Data da Pesquisa: {{ aluno_form.data_pesquisa.value }}</p>
+    <p> Sexo: {{ aluno_form.sexo.value }}</p>
+    <p> Bio: {{ aluno_form.bio.value }}</p>
+    <p> E-mail: {{ aluno_form.email.value }}</p>
+    <p> Data Hora: {{ aluno_form.data_hora.value }}</p>
+    <p> Hora: {{ aluno_form.horas.value }}</p>
+    <p> Data com intervalo: {{ aluno_form.data_intervalo.value }}</p>
+    <p> Origem {{ aluno_form.origem.value }}</p>
+    <p> Destino: {{ aluno_form.destino.value }}</p>
+    <p> CPF: {{ pessoa_form.cpf.value }}</p>
 </section>
 </body>
 </html>

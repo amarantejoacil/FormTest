@@ -2,7 +2,7 @@ from django import forms
 from tempus_dominus.widgets import DatePicker, DateTimePicker, TimePicker
 from datetime import datetime
 from aluno.validation import *
-
+from .models import Pessoa
 
 class AlunoForms(forms.Form):
     nome = forms.CharField(label='Nome', max_length=100)
@@ -11,14 +11,8 @@ class AlunoForms(forms.Form):
     data_nascimento = forms.DateField(label='Data de nascimento', widget=DatePicker(), required=False)
     data_pesquisa = forms.DateField(label='Data da pesquisa', disabled=True,
                                     initial=datetime.today(), required=False)
-
     origem = forms.CharField(label='origem', max_length=100, required=False)
     destino = forms.CharField(label='destino', max_length=100, required=False)
-
-
-
-
-
 
     TIPO = {
         (1, 'Masculino'),
@@ -83,10 +77,9 @@ class AlunoForms(forms.Form):
             return nome
 
     def clean(self):
+        # VALIDAÇÃO MODELO 02
         # origem = self.cleaned_data.get('origem')
         # destino = self.cleaned_data.get('destino')
-
-        # VALIDAÇÃO MODELO 02
         # if origem == destino:
         #     self.add_error('destino', 'Origem e Destino não podem ser iguais')
         # return self.cleaned_data
@@ -107,10 +100,15 @@ class AlunoForms(forms.Form):
                 mensagem_erro = lista_de_erros[erro]
                 self.add_error(erro, mensagem_erro)
 
-
         return self.cleaned_data
 
 
+class PessoaForm(forms.ModelForm):
+    class Meta:
+        model = Pessoa
+        fields = ['cpf']
+        # todos exceto cpf
+        # exclude = ['cpf']
 
 
 
