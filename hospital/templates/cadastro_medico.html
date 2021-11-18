@@ -11,6 +11,12 @@
     <fieldset>
         <legend>Cadastro de Consulta</legend>
              {{ form.as_p }}
+            {% for erro in field.errors %}
+                <section class="alert alert-danger" role="alert">
+                    {{ field.errors }}
+                </section>
+            {% endfor %}
+
 
             <button type="submit">Cadastrar Médico</button>
     </fieldset>

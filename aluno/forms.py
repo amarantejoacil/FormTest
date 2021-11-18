@@ -101,6 +101,7 @@ class AlunoForms(forms.Form):
                 mensagem_erro = lista_de_erros[erro]
                 self.add_error(erro, mensagem_erro)
 
+
         return self.cleaned_data
 
 

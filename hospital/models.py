@@ -7,7 +7,7 @@ from django.db import models
 class Medico(models.Model):
     numero_registro = models.IntegerField('N° de Registro')
     nome = models.CharField('Nome', max_length=100)
-    data_nascimento = models.DateField('Data de nascimento')
+    data_nascimento = models.DateField('Data de nascimento', null=True, blank=True)
 
     def __str__(self):
         return self.nome

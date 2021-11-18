@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from hospital.forms import MedicoModelForm
+from hospital.validation import *
 # Create your views here.
 
 
@@ -18,16 +19,31 @@ def CadastrarMedico(request):
         #POST
         form = MedicoModelForm(request.POST)
         if form.is_valid():
-            obj_medico = form.save()
-            form = MedicoModelForm() #limpo formulário
+            lista_erros = {}
+            nome = form.data['nome']
+            verifica_num_text(nome, 'nome', lista_erros)
+
+            existe_erro = 'N'
+            for e in lista_erros:
+                mensagem_erro = lista_erros[e]
+                form.add_error(e, mensagem_erro)
+                existe_erro = 'S'
 
 
+            if existe_erro == 'N':
+                form.save()
+                form = MedicoModelForm()  # limpo formulário
+                context = {
+                    'form': form
+                }
+                return render(request, 'consulta.html', context)
+            else:
+                context = {
+                    'form': form
+                }
+                return render(request, 'cadastro_medico.html', context)
 
-        #retorno do contexto executa independente do formulario ser valido
-        context = {
-            'form': form
-        }
-        return render(request, 'consulta.html', context)
+
 
 
 
