@@ -15,7 +15,7 @@
         <h1>Aluno</h1>
         <form action="{% url 'minha-consulta' %}" method="POST">
             {% csrf_token %}
-            <h3>exibindo manualmente aluno_form.nome</h3>
+            <h3>exibindo manualmente nome</h3>
 
             <p>Nome: {{ aluno_form.nome }}</p>
             <hr>

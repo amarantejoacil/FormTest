@@ -4,6 +4,7 @@ from datetime import datetime
 from aluno.validation import *
 from .models import Pessoa
 
+
 class AlunoForms(forms.Form):
     nome = forms.CharField(label='Nome', max_length=100)
     senha = forms.CharField(label='Senha', max_length=100)

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Paciente</title>
+</head>
+<body>
+<h1>Listas Pacientes</h1>
+
+<a href="{% url 'cadastrar-medico' %}">CADASTRAR NOVO MEDICO</a>
+
+<h1>Consulta 1 - Separada</h1>
+<table>
+    <p>Nome do médico:</p>
+    <p>Nº Registro:</p>
+    <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Sexo</th>
+    </tr>
+    <tr>
+        <td>pk</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+</table>
+
+
+<h1>Consulta 2 - Agrupada</h1>
+
+<table>
+    <tr>
+        <th>#</th>
+        <th>Nome do médico</th>
+        <th>N° Registro</th>
+        <th>Paciente Nome</th>
+        <th>Paciente Sexo</th>
+    </tr>
+    <tr>
+        <td>pk</td>
+        <td>Dados Medico 1</td>
+        <td>Dados Medico 2</td>
+        <td>Dados Paciente 1</td>
+        <td>Dados Paciente 2</td>
+    </tr>
+</table>
+
+
+</body>
+</html>
