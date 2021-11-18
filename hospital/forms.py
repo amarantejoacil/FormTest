@@ -1,6 +1,6 @@
 from django import forms
 from .models import Medico
-
+from hospital.validation import *
 
 
 class MedicoModelForm(forms.ModelForm):
@@ -8,17 +8,19 @@ class MedicoModelForm(forms.ModelForm):
         model = Medico
         fields = ['numero_registro', 'nome', 'data_nascimento']
 
+    def clean(self):
+        lista_erros = {}
+        nome = self.cleaned_data.get('nome')
+        verifica_num_text(nome, 'nome', lista_erros)
 
-    # numero_registro = forms.IntegerField(label='N° Registro')
-    # nome = forms.CharField(label='Nome', max_length=100)
-    # data_nascimento = forms.DateField(label='Data de nascimento')
-    #
-    # def clean(self):
-    #     nome = self.cleaned_data.get('nome')
-    #     if any(char.isdigit() for char in nome):
-    #         raise forms.ValidationError('Não é permitido número neste campo!')
-    #     else:
-    #         return nome
+        # verifica se existe erro
+        if lista_erros is not None:
+            for erro in lista_erros:
+                mensagem_erro = lista_erros[erro]
+                self.add_error(erro, mensagem_erro)
+
+        return self.cleaned_data
+
 
 
 
