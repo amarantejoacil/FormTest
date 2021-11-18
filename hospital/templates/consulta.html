@@ -10,19 +10,25 @@
 <a href="{% url 'cadastrar-medico' %}">CADASTRAR NOVO MEDICO</a>
 
 <h1>Consulta 1 - Separada</h1>
-<table>
-    <p>Nome do médico:</p>
-    <p>Nº Registro:</p>
+<table border="1">
     <tr>
         <th>#</th>
         <th>Nome</th>
         <th>Sexo</th>
+        <th>Ação</th>
     </tr>
+    {% for m in obj_medico %}
     <tr>
-        <td>pk</td>
-        <td>2</td>
-        <td>3</td>
+        <td>{{m.pk}}</td>
+        <td>{{m.nome}}</td>
+        <td>{{m.data_nascimento}}</td>
+        <td>
+            <a href="{% url 'atualizar-medico' m.pk %}">Alterar</a>
+            <a href="{% url 'deletar-medico' m.pk %}">Excluir</a>
+
+        </td>
     </tr>
+    {% endfor %}
 </table>
 
 
