@@ -9,19 +9,35 @@ def ConsultaView(request):
 
 
 def CadastrarMedico(request):
-    if request.method == 'GET':
-        form = MedicoModelForm()
-        context = {
-            'form': form
-        }
-        return render(request, 'cadastro_medico.html', context)
-    else:
+    form = MedicoModelForm()
+    if request.method == 'POST':
         form = MedicoModelForm(request.POST)
         if form.is_valid():
             form.save()
             return render(request, 'consulta.html')
-        else:
-            context = {
-                'form': form
-            }
-            return render(request, 'cadastro_medico.html', context)
+
+    context = {
+        'form': form
+    }
+    return render(request, 'cadastro_medico.html', context)
+
+
+
+
+
+    # if request.method == 'GET':
+    #     form = MedicoModelForm()
+    #     context = {
+    #         'form': form
+    #     }
+    #     return render(request, 'cadastro_medico.html', context)
+    # else:
+    #     form = MedicoModelForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         return render(request, 'consulta.html')
+    #     else:
+    #         context = {
+    #             'form': form
+    #         }
+    #         return render(request, 'cadastro_medico.html', context)
