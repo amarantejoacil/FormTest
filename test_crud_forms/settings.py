@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'tempus_dominus',
     'widget_tweaks',
     'ckeditor',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

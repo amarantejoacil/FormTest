@@ -1,7 +1,16 @@
 from django.shortcuts import render, redirect
 from hospital.forms import MedicoModelForm
 from .models import Medico
+from django.http import JsonResponse
+from rest_framework import viewsets
+from hospital.serializer import MedicoSerializer
 # Create your views here.
+
+
+class MedicoViewSet(viewsets.ModelViewSet):
+    """ exibindo todos os médicos cadastrados """
+    queryset = Medico.objects.all()
+    serializer_class = MedicoSerializer
 
 
 def ConsultaView(request):
