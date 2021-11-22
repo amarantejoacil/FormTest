@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from hospital.forms import MedicoModelForm
-from .models import Medico, Paciente, Disciplina, Estudante, Matricula
+from .models import Medico, Paciente, Disciplina, Estudante, Matricula, Atendimento
 from django.http import JsonResponse
 from rest_framework import viewsets, generics
 from hospital.serializer import MedicoSerializer, PacienteSerializer, ListaPacientePorMedicoSerializer, \
@@ -57,6 +57,7 @@ class MatriculaViewSet(viewsets.ModelViewSet):
 
 def ConsultaView(request):
     obj_medico = Medico.objects.all()
+    # obj_atendimento = Atendimento.objects.all()
     return render(request, 'consulta.html', {'obj_medico': obj_medico})
 
 
@@ -66,6 +67,7 @@ def CadastrarMedico(request):
         form = MedicoModelForm(request.POST)
         if form.is_valid():
             form.save()
+            # form.save_m2m()
             return redirect('lista-paciente')
 
     context = {
@@ -82,6 +84,7 @@ def AtualizaMedico(request, pk):
         form = MedicoModelForm(request.POST, instance=medico)
         if form.is_valid():
             form.save()
+            # form.save_m2m()
             return redirect('lista-paciente')
 
     context = {

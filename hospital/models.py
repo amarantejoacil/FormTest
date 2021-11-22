@@ -1,13 +1,26 @@
 from django.db import models
 
-# Create your models here.
 
+class Atendimento (models.Model):
+    descricao = models.CharField('descricao', max_length=100, null=True, blank=True)
+
+    def __str__(self):
+        return self.descricao
+
+
+class Especialidade(models.Model):
+    descricao = models.CharField('descricao', max_length=100)
+
+    def __str__(self):
+        return self.descricao
 
 
 class Medico(models.Model):
     numero_registro = models.IntegerField('N° de Registro')
     nome = models.CharField('Nome', max_length=100)
     data_nascimento = models.DateField('Data de nascimento', null=True, blank=True)
+    especialidade = models.ForeignKey(Especialidade, on_delete=models.PROTECT, null=True, blank=True)
+    atendimento = models.ManyToManyField(Atendimento)
 
     def __str__(self):
         return self.nome

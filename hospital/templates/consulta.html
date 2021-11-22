@@ -15,6 +15,8 @@
         <th>#</th>
         <th>Nome</th>
         <th>Sexo</th>
+        <th>Especialidade</th>
+        <th>Atendimento</th>
         <th>Ação</th>
     </tr>
     {% for m in obj_medico %}
@@ -22,6 +24,11 @@
         <td>{{m.pk}}</td>
         <td>{{m.nome}}</td>
         <td>{{m.data_nascimento}}</td>
+        <td>{{m.especialidade}}</td>
+        <td>{{m.atendimento}}</td>
+<!--        {% for a in obj_atendimento %}-->
+<!--            <td>{{a.atendimento}}</td>-->
+<!--        {% endfor %}-->
         <td>
             <a href="{% url 'atualizar-medico' m.pk %}">Alterar</a>
             <a href="{% url 'deletar-medico' m.pk %}">Excluir</a>

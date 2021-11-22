@@ -1,12 +1,22 @@
 from django import forms
-from .models import Medico
+from .models import Medico, Atendimento
 from hospital.validation import *
+
+# class CustomMMCF(forms.ModelMultipleChoiceField):
+#
+#     def label_from_instance(self, atendimento):
+#         return atendimento.descricao
 
 
 class MedicoModelForm(forms.ModelForm):
     class Meta:
         model = Medico
-        fields = ['numero_registro', 'nome', 'data_nascimento']
+        fields = ['numero_registro', 'nome', 'data_nascimento', 'especialidade', 'atendimento']
+
+        # atendimento = forms.ModelMultipleChoiceField(
+        #     queryset=Atendimento.objects.all(),
+        #     widget=forms.CheckboxSelectMultiple
+        # )
 
     def clean(self):
         lista_erros = {}
@@ -21,7 +31,3 @@ class MedicoModelForm(forms.ModelForm):
 
         return self.cleaned_data
 
-
-
-
-    #
