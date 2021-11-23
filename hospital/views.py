@@ -57,8 +57,13 @@ class MatriculaViewSet(viewsets.ModelViewSet):
 
 def ConsultaView(request):
     obj_medico = Medico.objects.all()
+    obj_paciente_medico = Paciente.objects.all()
+    context = {
+        'obj_medico': obj_medico,
+        'obj_paciente_medico': obj_paciente_medico
+    }
     # obj_atendimento = Atendimento.objects.all()
-    return render(request, 'consulta.html', {'obj_medico': obj_medico})
+    return render(request, 'consulta.html', context)
 
 
 def CadastrarMedico(request):

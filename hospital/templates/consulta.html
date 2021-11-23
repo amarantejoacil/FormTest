@@ -44,18 +44,20 @@
 <table>
     <tr>
         <th>#</th>
-        <th>Nome do médico</th>
-        <th>N° Registro</th>
-        <th>Paciente Nome</th>
-        <th>Paciente Sexo</th>
+        <th>Paciente</th>
+        <th>Sexo</th>
+        <th>Médico</th>
+        <th>Numero de registro</th>
     </tr>
+    {% for p in obj_paciente_medico %}
     <tr>
-        <td>pk</td>
-        <td>Dados Medico 1</td>
-        <td>Dados Medico 2</td>
-        <td>Dados Paciente 1</td>
-        <td>Dados Paciente 2</td>
+        <td>{{p.id}}</td>
+        <td>{{p.nome}}</td>
+        <td>{{p.sexo}}</td>
+        <td>{{p.medico}}</td>
+        <td>{{p.medico.numero_registro}}</td>
     </tr>
+    {% endfor %}
 </table>
 
 
